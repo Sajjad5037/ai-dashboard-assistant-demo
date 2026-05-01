@@ -90,7 +90,8 @@ if generate_clicked:
 
         with st.spinner("Analyzing..."):
             try:
-                output = generate_response_llm(prompt)
+                system_prompt = mode_config["system_prompt"]
+                output = generate_response_llm(prompt, system_prompt)
                 st.session_state.output_text_main = output
             except Exception as e:
                 st.error(f"Error: {str(e)}")

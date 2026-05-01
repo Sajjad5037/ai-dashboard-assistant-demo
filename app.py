@@ -2,7 +2,7 @@ import streamlit as st
 from config import APP_CONFIG
 from prompt_engine import build_prompt
 from llm import generate_response_llm
-from prompt_engine import build_prompt_with_context
+
 # -------------------------------
 # Page Config
 # -------------------------------
@@ -53,24 +53,16 @@ if "output_text_main" not in st.session_state:
 col_input, col_actions = st.columns([4, 1])
 
 with col_input:
-
-    # 🔹 Context box (NEW)
-    
-
-    # 🔹 Main input (existing)
-    col_input, col_actions = st.columns([4, 1])
-
-    with col_input:
-        user_input = st.text_area(
-            "Enter your data:",
-            value=st.session_state.input_text_main,
-            height=260,
-            placeholder=config.get("input_placeholder", "")
-        )
+    user_input = st.text_area(
+        "Enter your data:",
+        value=st.session_state.input_text_main,
+        height=260,
+        placeholder=config.get("input_placeholder", "")
+    )
 
 with col_actions:
-    st.write("")  # spacing
-    st.write("")  
+    st.write("")
+    st.write("")
 
     if st.button("Load Example"):
         st.session_state.input_text_main = config["example_input"]
@@ -80,7 +72,6 @@ with col_actions:
         st.session_state.input_text_main = ""
         st.session_state.output_text_main = ""
         st.rerun()
-
 # -------------------------------
 # Generate Button
 # -------------------------------
@@ -94,7 +85,7 @@ if generate_clicked:
         st.warning("Please enter some input before generating.")
     else:
         template = mode_config["prompt"]
-        context = st.session_state.get("context_text", "")
+        
 
         prompt = build_prompt(template, user_input)
 

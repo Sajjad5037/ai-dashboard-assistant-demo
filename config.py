@@ -106,28 +106,15 @@ Data:
             # ---------------------------
             # Q&A Mode
             # ---------------------------
-            "Ask Questions": {
-                "system_prompt": (
-                    "You are a business analyst answering questions based on provided context."
-                ),
+ "Ask Questions": {
+    "system_prompt": "You are a business analyst answering questions based on provided input.",
+    "prompt": """
+Answer questions based on the provided input.
 
-                "prompt": """
-You are a business analyst.
+If the input does not contain enough information, say:
+"Not enough information."
 
-Context:
-{context}
-
-User Question:
+Input:
 {input}
-
-Rules:
-- If context is provided, base your answer on it
-- If no context is provided, use general business knowledge
-- Be clear, practical, and concise
-
-Answer:
 """
-            }
-        }
-    }
 }

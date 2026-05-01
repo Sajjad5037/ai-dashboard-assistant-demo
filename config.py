@@ -17,7 +17,7 @@ APP_CONFIG = {
         ),
 
         # -------------------------------
-        # Example Input (VERY IMPORTANT)
+        # Example Input
         # -------------------------------
         "example_input": """Q2 revenue dropped by 12% compared to Q1.
 Customer churn increased significantly in the last 2 months.
@@ -28,19 +28,15 @@ Sales team reported lower conversion rates.
 """,
 
         # -------------------------------
-        # Modes (Core Functionality)
+        # Modes
         # -------------------------------
         "modes": {
 
-            # ---------------------------
-            # Summarization Mode
-            # ---------------------------
             "Summarize Notes": {
                 "system_prompt": (
                     "You are a senior business analyst. Provide structured, "
                     "clear, and professional summaries."
                 ),
-
                 "prompt": """
 Summarize the following business notes.
 
@@ -58,14 +54,10 @@ Business Notes:
 """
             },
 
-            # ---------------------------
-            # Report Generation
-            # ---------------------------
             "Generate Report": {
                 "system_prompt": (
                     "You are a professional business consultant writing reports for executives."
                 ),
-
                 "prompt": """
 Create a structured business report based on the following data.
 
@@ -83,14 +75,10 @@ Data:
 """
             },
 
-            # ---------------------------
-            # Action Extraction
-            # ---------------------------
             "Extract Action Items": {
                 "system_prompt": (
                     "You are an operations manager extracting actionable tasks."
                 ),
-
                 "prompt": """
 From the following business notes, extract clear and actionable tasks.
 
@@ -103,12 +91,11 @@ Data:
 """
             },
 
-            # ---------------------------
-            # Q&A Mode
-            # ---------------------------
- "Ask Questions": {
-    "system_prompt": "You are a business analyst answering questions based on provided input.",
-    "prompt": """
+            "Ask Questions": {
+                "system_prompt": (
+                    "You are a business analyst answering questions based on provided input."
+                ),
+                "prompt": """
 Answer questions based on the provided input.
 
 If the input does not contain enough information, say:
@@ -117,4 +104,10 @@ If the input does not contain enough information, say:
 Input:
 {input}
 """
-}
+            }
+
+        }  # end modes
+
+    }  # end AI Dashboard Assistant
+
+}  # end APP_CONFIG

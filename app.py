@@ -103,22 +103,9 @@ if st.session_state.output_text_main:
     st.divider()
     st.subheader(f"{mode} Output")
 
-    st.markdown(
-        f"""
-        <div style="
-            background-color:#f9f9f9;
-            padding:20px;
-            border-radius:10px;
-            border:1px solid #eee;
-            font-size:15px;
-            line-height:1.6;
-        ">
-        {st.session_state.output_text_main}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.success("Analysis complete")
 
+    st.markdown(st.session_state.output_text_main)
 # -------------------------------
 # Footer (Subtle Branding)
 # -------------------------------

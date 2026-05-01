@@ -26,25 +26,6 @@ def build_prompt(template: str, user_input: str) -> str:
 # Optional: Context-Aware Prompt Builder
 # (use later for chat / memory features)
 # ---------------------------------------
-def build_prompt_with_context(prompt_template: str, user_input: str, context: str = "") -> str:
-    """
-    Builds prompt with optional additional context.
-
-    Args:
-        prompt_template (str): template containing {input} and optionally {context}
-        user_input (str): user input
-        context (str): extra context (history, docs, etc.)
-
-    Returns:
-        str: final prompt
-    """
-
-    prompt = prompt_template.replace("{input}", user_input.strip())
-
-    if "{context}" in prompt_template:
-        prompt = prompt.replace("{context}", context.strip())
-
-    return prompt
 
 
 # ---------------------------------------

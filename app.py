@@ -2,7 +2,7 @@ import streamlit as st
 from config import APP_CONFIG
 from prompt_engine import build_prompt
 from llm import generate_response_llm
-
+from prompt_engine import build_prompt_with_context
 # -------------------------------
 # Page Config
 # -------------------------------
@@ -53,13 +53,22 @@ if "output_text_main" not in st.session_state:
 col_input, col_actions = st.columns([4, 1])
 
 with col_input:
+
+    # 🔹 Context box (NEW)
+    st.text_area(
+        "Optional Context (paste notes, reports, or data):",
+        key="context_text",
+        height=150,
+        placeholder="Paste business context here (optional)..."
+    )
+
+    # 🔹 Main input (existing)
     user_input = st.text_area(
-        "Enter your data:",
+        "Ask your question or enter your data:",
         value=st.session_state.input_text_main,
         height=260,
         placeholder=config.get("input_placeholder", "")
     )
-
 with col_actions:
     st.write("")  # spacing
     st.write("")  
@@ -86,7 +95,13 @@ if generate_clicked:
         st.warning("Please enter some input before generating.")
     else:
         template = mode_config["prompt"]
-        prompt = build_prompt(template, user_input)
+        context = st.session_state.get("context_text", "")
+
+        prompt = build_prompt_with_context(
+            prompt_template=template,
+            user_input=user_input,
+            context=context
+        )
 
         with st.spinner("Analyzing..."):
             try:

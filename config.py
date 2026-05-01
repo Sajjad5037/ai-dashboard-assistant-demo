@@ -112,13 +112,20 @@ Data:
                 ),
 
                 "prompt": """
-Answer questions based ONLY on the provided data.
+You are a business analyst.
 
-If the answer is not available, say:
-"Not enough information."
+Context:
+{context}
 
-Data:
+User Question:
 {input}
+
+Rules:
+- If context is provided, base your answer on it
+- If no context is provided, use general business knowledge
+- Be clear, practical, and concise
+
+Answer:
 """
             }
         }

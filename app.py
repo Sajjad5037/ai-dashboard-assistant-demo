@@ -57,7 +57,7 @@ with col_input:
         "Enter your data:",
         value=st.session_state.input_text_main,
         height=260,
-        placeholder="Paste business notes, logs, or data here..."
+        placeholder=config.get("input_placeholder", "")
     )
 
 with col_actions:
@@ -100,7 +100,7 @@ if generate_clicked:
 # -------------------------------
 if st.session_state.output_text_main:
     st.divider()
-    st.subheader("Result")
+    st.subheader(f"{mode} Output")
 
     st.markdown(
         f"""

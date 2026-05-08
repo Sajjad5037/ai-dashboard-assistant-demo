@@ -185,7 +185,16 @@ if st.session_state.output_data_main:
         st.subheader("Executive Summary")
     
         st.info(data["executive_summary"])
-    
+        # -------------------------------
+        # Executive Alerts
+        # -------------------------------
+        st.subheader("Executive Alerts")
+        
+        st.error("Revenue decline exceeded quarterly threshold.")
+        
+        st.warning("Customer churn increased over the last 60 days.")
+        
+        st.info("Support ticket volume increased by 18%.")    
         st.subheader("Operational Status")
     
         if data["risk_level"] == "High":
@@ -196,6 +205,18 @@ if st.session_state.output_data_main:
     
         else:
             st.success("Business Risk Level: Low")
+    # -------------------------------
+    # Recent System Activity
+    # -------------------------------
+    st.subheader("Recent System Activity")
+    
+    st.caption("09:41 AM • AI analyzed quarterly revenue trends")
+    
+    st.caption("09:43 AM • Customer churn anomaly detected")
+    
+    st.caption("09:44 AM • Operational risk score updated")
+    
+    st.caption("09:45 AM • Executive report generated")
     
     # =====================================================
     # TAB 2 → FINDINGS

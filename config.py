@@ -1,5 +1,6 @@
 APP_CONFIG = {
     "AI Dashboard Assistant": {
+
         "title": "📊 AI Dashboard Assistant",
 
         "description": (
@@ -32,94 +33,189 @@ Sales team reported lower conversion rates.
         # -------------------------------
         "modes": {
 
+            # =========================================================
+            # SUMMARIZE NOTES
+            # =========================================================
             "Summarize Notes": {
+
                 "system_prompt": (
-                    "You are a senior business analyst. Provide structured, "
-                    "clear, and professional summaries."
+                    "You are a structured business analysis API. "
+                    "You must always return valid JSON only. "
+                    "Never return markdown, explanations, headings, "
+                    "or prose outside JSON."
                 ),
+
                 "prompt": """
-Summarize the following business notes.
+Analyze the provided business notes.
 
-Return your response in this format:
+Return ONLY valid JSON.
 
-- Key Points
-- Trends
-- Risks
-- Opportunities
+IMPORTANT:
+- Do not include markdown
+- Do not include headings
+- Do not include explanations
+- Do not include triple backticks
+- Output must start with {
+- Output must end with }
 
-Be concise but insightful.
+Use this exact schema:
+
+{
+  "key_points": [
+    "...",
+    "..."
+  ],
+  "trends": [
+    "...",
+    "..."
+  ],
+  "risks": [
+    "...",
+    "..."
+  ],
+  "opportunities": [
+    "...",
+    "..."
+  ],
+  "overall_summary": "..."
+}
 
 Business Notes:
 {input}
 """
             },
 
+            # =========================================================
+            # GENERATE REPORT
+            # =========================================================
             "Generate Report": {
+
                 "system_prompt": (
-                    "You are a professional business consultant creating structured executive reports."
+                    "You are a structured business analysis API. "
+                    "You must always return valid JSON only. "
+                    "Never return markdown, explanations, headings, "
+                    "or prose outside JSON."
                 ),
 
                 "prompt": """
-            Analyze the provided business data.
+Analyze the provided business data.
 
-            Return ONLY valid JSON.
+Return ONLY valid JSON.
 
-            Do not include markdown.
-            Do not include explanations.
-            Do not wrap the JSON in triple backticks.
+IMPORTANT:
+- Do not include markdown
+- Do not include headings
+- Do not include explanations
+- Do not include triple backticks
+- Output must start with {
+- Output must end with }
 
-            Use this exact schema:
+Use this exact schema:
 
-            {
-            "executive_summary": "...",
-            "key_findings": [
-                "...",
-                "..."
-            ],
-            "identified_problems": [
-                "...",
-                "..."
-            ],
-            "recommendations": [
-                "...",
-                "..."
-            ],
-            "risk_level": "Low/Medium/High",
-            "business_outlook": "..."
-            }
+{
+  "executive_summary": "...",
+  "key_findings": [
+    "...",
+    "..."
+  ],
+  "identified_problems": [
+    "...",
+    "..."
+  ],
+  "recommendations": [
+    "...",
+    "..."
+  ],
+  "risk_level": "Low/Medium/High",
+  "business_outlook": "..."
+}
 
-            Business Data:
-            {input}
-            """
-            },
-
-            "Extract Action Items": {
-                "system_prompt": (
-                    "You are an operations manager extracting actionable tasks."
-                ),
-                "prompt": """
-From the following business notes, extract clear and actionable tasks.
-
-Return as a bullet list with:
-- Task
-- Priority (High/Medium/Low)
-
-Data:
+Business Data:
 {input}
 """
             },
 
-            "Ask Questions": {
+            # =========================================================
+            # EXTRACT ACTION ITEMS
+            # =========================================================
+            "Extract Action Items": {
+
                 "system_prompt": (
-                    "You are a business analyst answering questions based on provided input."
+                    "You are a structured operations workflow API. "
+                    "You must always return valid JSON only."
                 ),
+
                 "prompt": """
-Answer questions based on the provided input.
+Extract actionable operational tasks from the provided business notes.
 
-If the input does not contain enough information, say:
-"Not enough information."
+Return ONLY valid JSON.
 
-Input:
+IMPORTANT:
+- Do not include markdown
+- Do not include headings
+- Do not include explanations
+- Do not include triple backticks
+- Output must start with {
+- Output must end with }
+
+Use this exact schema:
+
+{
+  "action_items": [
+    {
+      "task": "...",
+      "priority": "High/Medium/Low",
+      "owner_recommendation": "...",
+      "deadline_urgency": "Immediate/Soon/Normal"
+    }
+  ],
+  "overall_priority": "Low/Medium/High"
+}
+
+Business Notes:
+{input}
+"""
+            },
+
+            # =========================================================
+            # ASK QUESTIONS
+            # =========================================================
+            "Ask Questions": {
+
+                "system_prompt": (
+                    "You are a structured business Q&A API. "
+                    "You must always return valid JSON only."
+                ),
+
+                "prompt": """
+Answer the business question based on the provided input.
+
+Return ONLY valid JSON.
+
+IMPORTANT:
+- Do not include markdown
+- Do not include headings
+- Do not include explanations
+- Do not include triple backticks
+- Output must start with {
+- Output must end with }
+
+If there is insufficient information,
+clearly state that in the response.
+
+Use this exact schema:
+
+{
+  "question_answered": true,
+  "answer": "...",
+  "confidence_level": "Low/Medium/High",
+  "supporting_points": [
+    "...",
+    "..."
+  ]
+}
+
+Business Input:
 {input}
 """
             }

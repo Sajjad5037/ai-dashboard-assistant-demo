@@ -218,10 +218,26 @@ if st.session_state.output_data_main:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.metric("Risk Level", data["risk_level"])
-
+    
+        st.markdown("""
+        <div class="kpi-card">
+            <div class="meta-text">Risk Level</div>
+            <div style="font-size:32px;font-weight:700;color:#dc2626;">
+                High
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    
     with col2:
-        st.metric("AI Confidence", "92%")
+    
+        st.markdown("""
+        <div class="kpi-card">
+            <div class="meta-text">AI Confidence</div>
+            <div style="font-size:32px;font-weight:700;color:#2563eb;">
+                92%
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # -------------------------------
     # Executive Summary

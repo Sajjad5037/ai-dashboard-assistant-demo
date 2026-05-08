@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 from config import APP_CONFIG
 from prompt_engine import build_prompt
@@ -47,6 +48,8 @@ if "input_text_main" not in st.session_state:
 if "output_text_main" not in st.session_state:
     st.session_state.output_text_main = ""
 
+if "output_data_main" not in st.session_state:
+    st.session_state.output_data_main = None
 # -------------------------------
 # Input Section
 # -------------------------------
@@ -92,22 +95,90 @@ if generate_clicked:
         with st.spinner("Analyzing..."):
             try:
                 system_prompt = mode_config["system_prompt"]
-                output = generate_response_llm(prompt, system_prompt)
-                st.session_state.output_text_main = output
+        
+                output = generate_response_llm(
+                    prompt,
+                    system_prompt
+                )
+        
+                try:
+                    parsed_output = json.loads(output)
+        
+                    st.session_state.output_text_main = output
+                    st.session_state.output_data_main = parsed_output
+        
+                except json.JSONDecodeError:
+                    st.error("Failed to parse AI response as JSON.")
+        
+                    st.session_state.output_text_main = output
+                    st.session_state.output_data_main = None
+        
             except Exception as e:
                 st.error(f"Error: {str(e)}")
-
 # -------------------------------
 # Output Section
 # -------------------------------
-if st.session_state.output_text_main:
+# -------------------------------
+# Output Section
+# -------------------------------
+if st.session_state.output_data_main:
+
+    data = st.session_state.output_data_main
+
     st.divider()
-    st.subheader(f"{mode} Output")
+
+    st.subheader("Executive Business Report")
 
     st.success("Analysis complete")
 
-    st.markdown(st.session_state.output_text_main)
-# -------------------------------
+    # -------------------------------
+    # Metrics Row
+    # -------------------------------
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.metric("Risk Level", data["risk_level"])
+
+    with col2:
+        st.metric("Business Outlook", "Generated")
+
+    # -------------------------------
+    # Executive Summary
+    # -------------------------------
+    st.subheader("Executive Summary")
+
+    st.info(data["executive_summary"])
+
+    # -------------------------------
+    # Key Findings
+    # -------------------------------
+    st.subheader("Key Findings")
+
+    for item in data["key_findings"]:
+        st.write(f"• {item}")
+
+    # -------------------------------
+    # Problems Identified
+    # -------------------------------
+    st.subheader("Problems Identified")
+
+    for item in data["identified_problems"]:
+        st.write(f"• {item}")
+
+    # -------------------------------
+    # Recommendations
+    # -------------------------------
+    st.subheader("Recommendations")
+
+    for item in data["recommendations"]:
+        st.write(f"• {item}")
+
+    # -------------------------------
+    # Business Outlook
+    # -------------------------------
+    st.subheader("Business Outlook")
+
+    st.warning(data["business_outlook"])# -------------------------------
 # Footer (Subtle Branding)
 # -------------------------------
 st.divider()

@@ -255,60 +255,99 @@ if st.session_state.output_data_main:
     # TAB 1 → OVERVIEW
     # =====================================================
     with tab1:
+
+        left_col, right_col = st.columns([2, 1])
     
-        st.markdown("""
-        <div class="enterprise-card">
-            <div class="section-title">
-                Executive Summary
+        # =====================================================
+        # LEFT SIDE
+        # =====================================================
+        with left_col:
+    
+            # -------------------------------
+            # Executive Summary
+            # -------------------------------
+            st.markdown("""
+            <div class="enterprise-card">
+                <div class="section-title">
+                    Executive Summary
+                </div>
+            """, unsafe_allow_html=True)
+    
+            st.info(data["executive_summary"])
+    
+            st.markdown("""
             </div>
-        """, unsafe_allow_html=True)
-        
-        st.info(data["executive_summary"])
-        
-        st.markdown("""
-        </div>
-        """, unsafe_allow_html=True)
-        # -------------------------------
-        # Executive Alerts
-        # -------------------------------
-        st.markdown("""
-        <div class="enterprise-card">
-            <div class="section-title">
-                Executive Alerts
+            """, unsafe_allow_html=True)
+    
+            # -------------------------------
+            # Executive Alerts
+            # -------------------------------
+            st.markdown("""
+            <div class="enterprise-card">
+                <div class="section-title">
+                    Executive Alerts
+                </div>
+            """, unsafe_allow_html=True)
+    
+            st.error("Revenue decline exceeded quarterly threshold.")
+    
+            st.warning("Customer churn increased over the last 60 days.")
+    
+            st.info("Support ticket volume increased by 18%.")
+    
+            st.markdown("""
             </div>
-        """, unsafe_allow_html=True)
-        
-        st.error("Revenue decline exceeded quarterly threshold.")
-        
-        st.warning("Customer churn increased over the last 60 days.")
-        
-        st.info("Support ticket volume increased by 18%.")    
-        st.markdown("""
-        </div>
-        """, unsafe_allow_html=True)
-        st.subheader("Operational Status")
+            """, unsafe_allow_html=True)
     
-        if data["risk_level"] == "High":
-            st.error("Business Risk Level: High")
+        # =====================================================
+        # RIGHT SIDE
+        # =====================================================
+        with right_col:
     
-        elif data["risk_level"] == "Medium":
-            st.warning("Business Risk Level: Medium")
+            # -------------------------------
+            # Operational Status
+            # -------------------------------
+            st.markdown("""
+            <div class="enterprise-card">
+                <div class="section-title">
+                    Operational Status
+                </div>
+            """, unsafe_allow_html=True)
     
-        else:
-            st.success("Business Risk Level: Low")
-    # -------------------------------
-    # Recent System Activity
-    # -------------------------------
-    st.subheader("Recent System Activity")
+            if data["risk_level"] == "High":
+                st.error("Business Risk Level: High")
     
-    st.caption("09:41 AM • AI analyzed quarterly revenue trends")
+            elif data["risk_level"] == "Medium":
+                st.warning("Business Risk Level: Medium")
     
-    st.caption("09:43 AM • Customer churn anomaly detected")
+            else:
+                st.success("Business Risk Level: Low")
     
-    st.caption("09:44 AM • Operational risk score updated")
+            st.markdown("""
+            </div>
+            """, unsafe_allow_html=True)
     
-    st.caption("09:45 AM • Executive report generated")
+            # -------------------------------
+            # Recent System Activity
+            # -------------------------------
+            st.markdown("""
+            <div class="enterprise-card">
+                <div class="section-title">
+                    Recent System Activity
+                </div>
+            """, unsafe_allow_html=True)
     
+            st.caption("09:41 AM • AI analyzed quarterly revenue trends")
+    
+            st.caption("09:43 AM • Customer churn anomaly detected")
+    
+            st.caption("09:44 AM • Operational risk score updated")
+    
+            st.caption("09:45 AM • Executive report generated")
+    
+            st.markdown("""
+            </div>
+            """, unsafe_allow_html=True)
     # =====================================================
     # TAB 2 → FINDINGS
     # =====================================================

@@ -158,38 +158,63 @@ if st.session_state.output_data_main:
     # -------------------------------
     # Executive Summary
     # -------------------------------
-    st.subheader("Executive Summary")
-
-    st.info(data["executive_summary"])
-
     # -------------------------------
-    # Key Findings
+    # Workflow Tabs
     # -------------------------------
-    st.subheader("Key Findings")
-
-    for item in data["key_findings"]:
-        st.write(f"• {item}")
-
-    # -------------------------------
-    # Problems Identified
-    # -------------------------------
-    st.subheader("Problems Identified")
-
-    for item in data["identified_problems"]:
-        st.write(f"• {item}")
-
-    # -------------------------------
-    # Recommendations
-    # -------------------------------
-    st.subheader("Recommendations")
-
-    for item in data["recommendations"]:
-        st.write(f"• {item}")
-
-    # -------------------------------
-    # Business Outlook
-    # -------------------------------
-    st.subheader("Business Outlook")
+    tab1, tab2, tab3 = st.tabs([
+        "Overview",
+        "Findings",
+        "Recommendations"
+    ])
+    
+    # =====================================================
+    # TAB 1 → OVERVIEW
+    # =====================================================
+    with tab1:
+    
+        st.subheader("Executive Summary")
+    
+        st.info(data["executive_summary"])
+    
+        st.subheader("Operational Status")
+    
+        if data["risk_level"] == "High":
+            st.error("Business Risk Level: High")
+    
+        elif data["risk_level"] == "Medium":
+            st.warning("Business Risk Level: Medium")
+    
+        else:
+            st.success("Business Risk Level: Low")
+    
+    # =====================================================
+    # TAB 2 → FINDINGS
+    # =====================================================
+    with tab2:
+    
+        st.subheader("Key Findings")
+    
+        for item in data["key_findings"]:
+            st.write(f"• {item}")
+    
+        st.subheader("Problems Identified")
+    
+        for item in data["identified_problems"]:
+            st.write(f"• {item}")
+    
+    # =====================================================
+    # TAB 3 → RECOMMENDATIONS
+    # =====================================================
+    with tab3:
+    
+        st.subheader("Recommendations")
+    
+        for item in data["recommendations"]:
+            st.write(f"• {item}")
+    
+        st.subheader("Business Outlook")
+    
+        st.warning(data["business_outlook"])
 
     st.warning(data["business_outlook"])# -------------------------------
 # Footer (Subtle Branding)

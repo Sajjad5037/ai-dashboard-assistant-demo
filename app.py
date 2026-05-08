@@ -11,6 +11,64 @@ st.set_page_config(
     page_title="AI Demo Suite",
     layout="wide"
 )
+# -------------------------------
+# Global Enterprise Styling
+# -------------------------------
+st.markdown("""
+<style>
+
+/* Main App Background */
+.main {
+    background-color: #f5f7fb;
+}
+
+/* Card Containers */
+.enterprise-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* Section Headers */
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #111827;
+}
+
+/* Small Metadata Text */
+.meta-text {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* KPI Metric Area */
+.kpi-card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+/* Reduce Excess Spacing */
+.block-container {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # -------------------------------
 # Select App (Foundation Switch)

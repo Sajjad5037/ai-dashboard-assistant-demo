@@ -56,23 +56,41 @@ Business Notes:
 
             "Generate Report": {
                 "system_prompt": (
-                    "You are a professional business consultant writing reports for executives."
+                    "You are a professional business consultant creating structured executive reports."
                 ),
+
                 "prompt": """
-Create a structured business report based on the following data.
+            Analyze the provided business data.
 
-Include:
+            Return ONLY valid JSON.
 
-1. Executive Summary
-2. Key Findings
-3. Problems Identified
-4. Recommendations
+            Do not include markdown.
+            Do not include explanations.
+            Do not wrap the JSON in triple backticks.
 
-Keep it professional and decision-focused.
+            Use this exact schema:
 
-Data:
-{input}
-"""
+            {
+            "executive_summary": "...",
+            "key_findings": [
+                "...",
+                "..."
+            ],
+            "identified_problems": [
+                "...",
+                "..."
+            ],
+            "recommendations": [
+                "...",
+                "..."
+            ],
+            "risk_level": "Low/Medium/High",
+            "business_outlook": "..."
+            }
+
+            Business Data:
+            {input}
+            """
             },
 
             "Extract Action Items": {

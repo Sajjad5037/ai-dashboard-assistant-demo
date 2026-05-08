@@ -240,19 +240,36 @@ if st.session_state.output_data_main:
     # =====================================================
     with tab1:
     
-        st.subheader("Executive Summary")
-    
+        st.markdown("""
+        <div class="enterprise-card">
+            <div class="section-title">
+                Executive Summary
+            </div>
+        """, unsafe_allow_html=True)
+        
         st.info(data["executive_summary"])
+        
+        st.markdown("""
+        </div>
+        """, unsafe_allow_html=True)
         # -------------------------------
         # Executive Alerts
         # -------------------------------
-        st.subheader("Executive Alerts")
+        st.markdown("""
+        <div class="enterprise-card">
+            <div class="section-title">
+                Executive Alerts
+            </div>
+        """, unsafe_allow_html=True)
         
         st.error("Revenue decline exceeded quarterly threshold.")
         
         st.warning("Customer churn increased over the last 60 days.")
         
         st.info("Support ticket volume increased by 18%.")    
+        st.markdown("""
+        </div>
+        """, unsafe_allow_html=True)
         st.subheader("Operational Status")
     
         if data["risk_level"] == "High":

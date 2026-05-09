@@ -1,31 +1,37 @@
 APP_CONFIG = {
     "AI Dashboard Assistant": {
 
-        "title": "📊 AI Dashboard Assistant",
+        "title": "🏭 AI Factory Operations Intelligence",
 
         "description": (
-            "Analyze business notes, generate reports, extract action items, "
-            "and answer questions based on internal data."
+            "Analyze factory operational updates, generate production intelligence "
+            "reports, identify operational risks, and support management "
+            "decision-making across production workflows."
         ),
 
-        "use_case": "Internal business analysis and reporting automation",
+        "use_case": (
+            "AI-assisted factory operations intelligence and production reporting"
+        ),
 
         # -------------------------------
         # Input Placeholder
         # -------------------------------
         "input_placeholder": (
-            "Paste meeting notes, operational updates, KPIs, or business logs here..."
+            "Submit machine issues, production delays, QC findings, dispatch risks, "
+            "inventory shortages, or factory operational updates..."
         ),
 
         # -------------------------------
         # Example Input
         # -------------------------------
-        "example_input": """Q2 revenue dropped by 12% compared to Q1.
-Customer churn increased significantly in the last 2 months.
-Marketing spend was reduced by 20%.
-Customer support tickets increased by 18%.
-Product team delayed 2 key feature releases.
-Sales team reported lower conversion rates.
+        "example_input": """
+Machine #12 experienced repeated thread breakage during large logo embroidery runs for export hoodies.
+
+Production throughput dropped significantly during the evening shift, and operators reported increasing delays in order completion.
+
+Three urgent export orders scheduled for tomorrow’s dispatch may not be completed on time if downtime continues.
+
+QC teams also reported increased stitching inconsistencies on premium garments requiring additional rework.
 """,
 
         # -------------------------------
@@ -34,19 +40,31 @@ Sales team reported lower conversion rates.
         "modes": {
 
             # =========================================================
-            # SUMMARIZE NOTES
+            # ANALYZE FACTORY REPORTS
             # =========================================================
-            "Summarize Notes": {
+            "Analyze Factory Reports": {
 
                 "system_prompt": (
-                    "You are a structured business analysis API. "
+                    "You are an AI factory operations intelligence system. "
+                    "Your role is to analyze factory operational reports related to "
+                    "production workflows, machine performance, quality control, "
+                    "dispatch operations, inventory issues, and operational bottlenecks. "
                     "You must always return valid JSON only. "
                     "Never return markdown, explanations, headings, "
                     "or prose outside JSON."
                 ),
 
                 "prompt": """
-Analyze the provided business notes.
+Analyze the provided factory operational report.
+
+Identify:
+- production risks
+- machine-related issues
+- dispatch risks
+- quality control concerns
+- operational bottlenecks
+- workflow disruptions
+- operational trends
 
 Return ONLY valid JSON.
 
@@ -65,40 +83,53 @@ Use this exact schema:
     "...",
     "..."
   ],
-  "trends": [
+  "operational_trends": [
     "...",
     "..."
   ],
-  "risks": [
+  "identified_risks": [
     "...",
     "..."
   ],
-  "opportunities": [
+  "operational_opportunities": [
     "...",
     "..."
   ],
-  "overall_summary": "..."
+  "overall_operational_summary": "..."
 }
 
-Business Notes:
+Factory Operational Report:
 {input}
 """
             },
 
             # =========================================================
-            # GENERATE REPORT
+            # GENERATE OPERATIONS INTELLIGENCE
             # =========================================================
-            "Generate Report": {
+            "Generate Operations Intelligence": {
 
                 "system_prompt": (
-                    "You are a structured business analysis API. "
+                    "You are an AI factory operations intelligence system. "
+                    "Your role is to convert raw factory operational reports into "
+                    "structured executive intelligence for factory owners and managers. "
+                    "You analyze production workflows, machine downtime, dispatch risk, "
+                    "quality control issues, inventory constraints, and operational impact. "
                     "You must always return valid JSON only. "
                     "Never return markdown, explanations, headings, "
                     "or prose outside JSON."
                 ),
 
                 "prompt": """
-Analyze the provided business data.
+Analyze the provided factory operational report.
+
+Identify:
+- production bottlenecks
+- machine performance issues
+- dispatch risks
+- operational impact
+- quality control concerns
+- management priorities
+- business consequences
 
 Return ONLY valid JSON.
 
@@ -127,26 +158,28 @@ Use this exact schema:
     "..."
   ],
   "risk_level": "Low/Medium/High",
-  "business_outlook": "..."
+  "factory_operations_outlook": "..."
 }
 
-Business Data:
+Factory Operational Report:
 {input}
 """
             },
 
             # =========================================================
-            # EXTRACT ACTION ITEMS
+            # EXTRACT OPERATIONAL ACTIONS
             # =========================================================
-            "Extract Action Items": {
+            "Extract Operational Actions": {
 
                 "system_prompt": (
-                    "You are a structured operations workflow API. "
+                    "You are an AI factory workflow coordination system. "
+                    "Your role is to extract actionable operational tasks from "
+                    "factory production reports and operational updates. "
                     "You must always return valid JSON only."
                 ),
 
                 "prompt": """
-Extract actionable operational tasks from the provided business notes.
+Extract actionable operational tasks from the provided factory operational report.
 
 Return ONLY valid JSON.
 
@@ -172,23 +205,26 @@ Use this exact schema:
   "overall_priority": "Low/Medium/High"
 }
 
-Business Notes:
+Factory Operational Report:
 {input}
 """
             },
 
             # =========================================================
-            # ASK QUESTIONS
+            # FACTORY OPERATIONS Q&A
             # =========================================================
-            "Ask Questions": {
+            "Factory Operations Q&A": {
 
                 "system_prompt": (
-                    "You are a structured business Q&A API. "
+                    "You are an AI factory operations intelligence assistant. "
+                    "Your role is to answer operational questions related to "
+                    "production workflows, machine performance, dispatch operations, "
+                    "quality control, inventory issues, and operational efficiency. "
                     "You must always return valid JSON only."
                 ),
 
                 "prompt": """
-Answer the business question based on the provided input.
+Answer the factory operations question based on the provided operational report.
 
 Return ONLY valid JSON.
 
@@ -200,7 +236,7 @@ IMPORTANT:
 - Output must start with {
 - Output must end with }
 
-If there is insufficient information,
+If there is insufficient operational information,
 clearly state that in the response.
 
 Use this exact schema:
@@ -215,13 +251,13 @@ Use this exact schema:
   ]
 }
 
-Business Input:
+Factory Operational Input:
 {input}
 """
             }
 
-        }  # end modes
+        }
 
-    }  # end AI Dashboard Assistant
+    }
 
-}  # end APP_CONFIG
+}

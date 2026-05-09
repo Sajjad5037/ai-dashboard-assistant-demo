@@ -141,6 +141,10 @@ with col_meta3:
 st.progress(92)
 
 st.caption("AI confidence score based on business pattern analysis.")
+st.info(
+    "🟢 AI-generated sections update dynamically based on employee operational reports. "
+    "🔴 Some KPI metrics and activity panels are currently simulated demo data for workflow demonstration purposes."
+)
 
 # -------------------------------
 # Metrics Row

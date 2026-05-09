@@ -559,6 +559,17 @@ with tab2:
         <div class="enterprise-card">
             <div class="section-title">
                 Production Risk Status
+                <span style="
+                    background:#dcfce7;
+                    color:#166534;
+                    padding:4px 10px;
+                    border-radius:20px;
+                    font-size:12px;
+                    margin-left:10px;
+                    font-weight:600;
+                ">
+                    AI Generated
+                </span>
             </div>
         """, unsafe_allow_html=True)
 

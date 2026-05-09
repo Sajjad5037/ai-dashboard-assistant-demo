@@ -492,6 +492,17 @@ with tab2:
         <div class="enterprise-card">
             <div class="section-title">
                 Executive Alerts
+                <span style="
+                    background:#fee2e2;
+                    color:#991b1b;
+                    padding:4px 10px;
+                    border-radius:20px;
+                    font-size:12px;
+                    margin-left:10px;
+                    font-weight:600;
+                ">
+                    Simulated Demo Data
+                </span>
             </div>
         """, unsafe_allow_html=True)
 

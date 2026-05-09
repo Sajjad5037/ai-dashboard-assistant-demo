@@ -283,70 +283,47 @@ with tab1:
 
     if generate_clicked:
 
-        st.write("✅ Generate button clicked")
-    
         if not user_input.strip():
     
-            st.warning("Please enter a factory operational update before continuing.")
+            st.warning(
+                "Please enter a factory operational update before continuing."
+            )
     
         else:
     
             try:
     
-                st.write("✅ Building prompt")
-    
                 template = mode_config["prompt"]
     
                 prompt = build_prompt(template, user_input)
     
-                st.write("✅ Prompt built successfully")
+                with st.spinner(
+                    "Analyzing factory operations and generating executive insights..."
+                ):
     
-                with st.spinner("Analyzing factory operations and generating executive insights..."):
+                    system_prompt = mode_config["system_prompt"]
     
-                    try:
+                    output = generate_response_llm(
+                        prompt,
+                        system_prompt
+                    )
     
-                        system_prompt = mode_config["system_prompt"]
+                    parsed_output = json.loads(output)
     
-                        st.write("✅ Calling OpenAI API")
+                    st.session_state.output_text_main = output
+                    st.session_state.output_data_main = parsed_output
     
-                        output = generate_response_llm(
-                            prompt,
-                            system_prompt
-                        )
+                    st.rerun()
     
-                        st.write("✅ Raw AI Response Received")
-                        st.write(output)
-                        st.write(type(output))
+            except json.JSONDecodeError:
     
-                        try:
-    
-                            parsed_output = json.loads(output)
-
-                            st.session_state.output_text_main = output
-                            st.session_state.output_data_main = parsed_output
-                            
-                            st.rerun()
-    
-                        except json.JSONDecodeError as e:
-    
-                            st.error("❌ Failed to parse AI response as JSON")
-    
-                            st.write(str(e))
-    
-                            st.code(output)
-    
-                            st.session_state.output_text_main = output
-                            st.session_state.output_data_main = None
-    
-                    except Exception as e:
-    
-                        st.error("❌ OpenAI API Error")
-                        st.write(str(e))
+                st.error(
+                    "Failed to parse AI operational intelligence response."
+                )
     
             except Exception as e:
     
-                st.error("❌ General Processing Error")
-                st.write(str(e))
+                st.error(f"Operational analysis error: {str(e)}")
 if st.session_state.output_data_main:
 
     data = st.session_state.output_data_main

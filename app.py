@@ -295,18 +295,24 @@ with tab1:
         # -------------------------------
         # Operational Input
         # -------------------------------
+        if "input_text_main" not in st.session_state:
+            st.session_state.input_text_main = ""
+        
         user_input = st.text_area(
             "Submit Factory Operational Update:",
-            key="input_text_main",
+            value=st.session_state.input_text_main,
+            key="factory_input_area",
             height=260,
             placeholder="""
-Example:
-Machine #12 experienced repeated thread tension failures during bulk embroidery runs. 
-Production throughput dropped during the evening shift, and two export orders may miss dispatch deadlines if downtime continues.
-
-QC staff also reported increased stitching inconsistencies on premium garments requiring additional rework.
-            """
+        Example:
+        Machine #12 experienced repeated thread tension failures during bulk embroidery runs.
+        
+        Production throughput dropped during the evening shift, and two export orders may miss dispatch deadlines if downtime continues.
+        
+        QC staff also reported increased stitching inconsistencies on premium garments requiring additional rework.
+        """
         )
+        st.session_state.input_text_main = user_input
 
     with col_actions:
 

@@ -365,6 +365,8 @@ with tab1:
                         st.session_state.output_text_main = output
                         st.session_state.output_data_main = parsed_output
 
+                        st.rerun()
+
                     except json.JSONDecodeError:
 
                         st.error("Failed to parse AI operational analysis response.")

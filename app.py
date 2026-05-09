@@ -456,7 +456,9 @@ with tab2:
         # Executive Summary
         # -------------------------------
         st.markdown("""
-        <div class="enterprise-card">
+        <div class="enterprise-card" style="
+            border-left: 5px solid #22c55e;
+        ">
             <div class="section-title">
                 Executive Summary
                 <span style="
@@ -558,7 +560,9 @@ with tab2:
         # Operational Status
         # -------------------------------
         st.markdown("""
-        <div class="enterprise-card">
+        <div class="enterprise-card" style="
+            border-left: 5px solid #22c55e;
+        ">
             <div class="section-title">
                 Production Risk Status
                 <span style="

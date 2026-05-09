@@ -140,27 +140,35 @@ else:
 
     data = {
         "executive_summary":
-            "AI operational monitoring dashboard ready for business analysis.",
+            "Customer satisfaction metrics declined this week due to increased refund delays and warehouse processing bottlenecks. Support ticket escalation volume increased across premium customer segments, while sales teams reported growing pricing pressure from competitors.",
 
         "risk_level": "Medium",
 
         "key_findings": [
-            "Operational monitoring systems active",
-            "Cross-department analysis ready",
-            "AI workflow engine initialized"
+            "Refund requests increased 18% after payment workflow update",
+            "Warehouse shipment delays impacted 3 delivery regions",
+            "Customer support wait times increased during peak hours",
+            "Premium customer churn risk increased by 9%",
+            "Sales teams reported increased pricing objections"
         ],
 
         "identified_problems": [
-            "Awaiting employee operational submissions"
+            "Refund approval workflow causing customer dissatisfaction",
+            "Inventory synchronization delays impacting fulfillment",
+            "Support staffing insufficient during high-volume periods",
+            "Sales conversion rates declining in premium segment"
         ],
 
         "recommendations": [
-            "Continue operational monitoring",
-            "Collect additional department updates"
+            "Audit refund processing workflow for automation delays",
+            "Increase support staffing during peak traffic windows",
+            "Prioritize warehouse inventory synchronization fixes",
+            "Review competitor pricing trends for premium accounts",
+            "Escalate logistics provider performance review"
         ],
 
         "business_outlook":
-            "Business operations currently stable."
+            "Operational pressure is increasing across support and fulfillment workflows. Immediate process optimization is recommended to reduce customer dissatisfaction and protect retention metrics."
     }
 st.divider()
 
@@ -336,19 +344,37 @@ with tab2:
     # =====================================================
     # TOP METRICS
     # =====================================================
+    # =====================================================
+    # TOP METRICS ROW 1
+    # =====================================================
     metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
-
+    
     with metric_col1:
         st.metric("Departments Reporting", "5")
-
+    
     with metric_col2:
         st.metric("Critical Alerts", "3")
-
+    
     with metric_col3:
         st.metric("Operational Health", "72%")
-
+    
     with metric_col4:
         st.metric("Active Issues", "12")
+    
+    # =====================================================
+    # TOP METRICS ROW 2
+    # =====================================================
+    metric_col5, metric_col6, metric_col7 = st.columns(3)
+    
+    with metric_col5:
+        st.metric("Revenue Impact", "$48K")
+    
+    with metric_col6:
+        st.metric("Refund Exposure", "$12.4K")
+    
+    with metric_col7:
+        st.metric("At-Risk Customers", "214")
+    
 
     st.divider()
 

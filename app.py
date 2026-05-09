@@ -101,12 +101,7 @@ st.write(config["description"])
 # -------------------------------
 # Mode Selector
 # -------------------------------
-mode = st.sidebar.selectbox(
-    "Select Task",
-    list(config["modes"].keys())
-)
-
-mode_config = config["modes"][mode]
+mode_config = config["modes"]["Generate Operations Intelligence"]
 
 # -------------------------------
 # Session State Init

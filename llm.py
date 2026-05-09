@@ -16,35 +16,37 @@ def get_openai_client_llm():
 # ---------------------------------------
 # Main LLM Call
 # ---------------------------------------
+# ---------------------------------------
+# Main LLM Call
+# ---------------------------------------
 def generate_response_llm(prompt: str, system_prompt: str) -> str:
+
+    client = get_openai_client_llm()
 
     try:
 
-        client = get_openai_client_llm()
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.5
+        )
 
-        return json.dumps({
-            "executive_summary": "DEBUG MODE ACTIVE",
-            "key_findings": [
-                "LLM pipeline reached successfully",
-                "Factory operational analysis initialized"
-            ],
-            "identified_problems": [
-                "Testing dashboard rendering"
-            ],
-            "recommendations": [
-                "Verify OpenAI API integration"
-            ],
-            "risk_level": "Medium",
-            "business_outlook": "Debug mode response generated successfully."
-        })
+        content = response.choices[0].message.content
+
+        if not content:
+            raise ValueError("Empty response received from model.")
+
+        return content.strip()
 
     except Exception as e:
 
-        return json.dumps({
-            "executive_summary": "ERROR",
-            "key_findings": [],
-            "identified_problems": [str(e)],
-            "recommendations": [],
-            "risk_level": "High",
-            "business_outlook": "LLM failure."
-        })
+        raise Exception(f"OpenAI API Error: {str(e)}")

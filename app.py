@@ -541,14 +541,16 @@ with tab2:
             </div>
         """, unsafe_allow_html=True)
 
-        if data["risk_level"] == "High":
+        risk_level = data.get("risk_level", "Medium")
+
+        if risk_level == "High":
             st.error("Production Risk Level: High")
-
-        elif data["risk_level"] == "Medium":
-            st.warning("Business Risk Level: Medium")
-
+        
+        elif risk_level == "Medium":
+            st.warning("Production Risk Level: Medium")
+        
         else:
-            st.success("Business Risk Level: Low")
+            st.success("Production Risk Level: Low")
 
         st.markdown("""
         </div>

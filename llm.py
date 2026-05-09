@@ -37,9 +37,9 @@ def generate_response_llm(prompt: str, system_prompt: str) -> str:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.5
+            temperature=0.5,
+            response_format={"type": "json_object"}
         )
-
         return response.choices[0].message.content.strip()
 
     except Exception as e:

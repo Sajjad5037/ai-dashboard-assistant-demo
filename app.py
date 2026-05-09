@@ -8,7 +8,7 @@ from llm import generate_response_llm
 # Page Config
 # -------------------------------
 st.set_page_config(
-    page_title="AI Demo Suite",
+    page_title="AI Factory Operations Intelligence",
     layout="wide"
 )
 # -------------------------------
@@ -73,12 +73,9 @@ section[data-testid="stSidebar"] {
 # -------------------------------
 # Select App (Foundation Switch)
 # -------------------------------
-app_name = st.sidebar.selectbox(
-    "Select Demo",
-    list(APP_CONFIG.keys())
-)
+config = APP_CONFIG["AI Factory Operations Intelligence"]
 
-config = APP_CONFIG[app_name]
+
 # -------------------------------
 # Fake Operational Metrics
 # -------------------------------
@@ -101,7 +98,7 @@ st.write(config["description"])
 # -------------------------------
 # Mode Selector
 # -------------------------------
-mode_config = config["modes"]["Generate Operations Intelligence"]
+mode_config = config["mode"]
 
 # -------------------------------
 # Session State Init

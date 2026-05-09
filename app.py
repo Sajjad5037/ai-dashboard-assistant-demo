@@ -598,12 +598,12 @@ with tab3:
 
     st.subheader("Key Findings")
 
-    for item in data["key_findings"]:
+    for item in data.get("key_findings", []):
         st.write(f"• {item}")
 
     st.subheader("Problems Identified")
 
-    for item in data["identified_problems"]:
+    for item in data.get("identified_problems", []):
         st.write(f"• {item}")
 # =====================================================
 # TAB 4 → RECOMMENDATIONS
@@ -612,12 +612,17 @@ with tab4:
 
     st.subheader("Recommendations")
 
-    for item in data["recommendations"]:
+    for item in data.get("recommendations", []):
         st.write(f"• {item}")
 
     st.subheader("Business Outlook")
 
-    st.warning(data["business_outlook"])
+    st.warning(
+        data.get(
+            "business_outlook",
+            "No operational outlook generated."
+        )
+    )
 # -------------------------------
 # Footer (Subtle Branding)
 # -------------------------------

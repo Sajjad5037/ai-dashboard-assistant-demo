@@ -17,20 +17,13 @@ def get_openai_client_llm():
 # Main LLM Call
 # ---------------------------------------
 def generate_response_llm(prompt: str, system_prompt: str) -> str:
-    """
-    Generates response using OpenAI Chat API.
-
-    Args:
-        prompt (str): user prompt
-        system_prompt (str): system role instruction
-
-    Returns:
-        str: model response
-    """
 
     client = get_openai_client_llm()
 
     try:
+
+        print("✅ OpenAI client initialized")
+
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
@@ -40,8 +33,23 @@ def generate_response_llm(prompt: str, system_prompt: str) -> str:
             temperature=0.5,
             response_format={"type": "json_object"}
         )
-        return response.choices[0].message.content.strip()
+
+        print("✅ OpenAI response received")
+
+        content = response.choices[0].message.content
+
+        print("✅ Response content extracted")
+
+        if not content:
+            raise ValueError("Empty response received from model.")
+
+        print("✅ Returning response")
+
+        return content.strip()
 
     except Exception as e:
-        # Clean error for UI
-        return f"Error generating response: {str(e)}"
+
+        print("❌ OpenAI API Exception:")
+        print(str(e))
+
+        raise e

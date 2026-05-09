@@ -382,7 +382,9 @@ else:
 with tab2:
 
     st.caption(
-        "AI-generated operational intelligence aggregated from cross-department employee submissions."
+        "AI-generated operational intelligence aggregated from cross-department employee submissions. "
+        "Several KPI and monitoring panels currently use simulated enterprise demo data to demonstrate "
+        "how future operational analytics could evolve within a production environment."
     )
 
     # =====================================================

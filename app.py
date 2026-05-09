@@ -367,18 +367,13 @@ with tab1:
                         try:
     
                             parsed_output = json.loads(output)
-    
-                            st.write("✅ JSON parsed successfully")
-    
-                            st.write("Parsed JSON:")
-                            st.json(parsed_output)
-    
+
                             st.session_state.output_text_main = output
                             st.session_state.output_data_main = parsed_output
-    
-                            st.write("✅ Session state updated")
-    
-                            st.rerun()
+                            
+                            st.success("Operational intelligence generated successfully.")
+                            
+                            st.json(st.session_state.output_data_main)
     
                         except json.JSONDecodeError as e:
     

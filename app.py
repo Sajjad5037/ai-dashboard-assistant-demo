@@ -461,7 +461,15 @@ with tab2:
             </div>
         """, unsafe_allow_html=True)
 
-        st.info(data["executive_summary"])
+        st.info(
+            data.get(
+                "executive_summary",
+                data.get(
+                    "overall_operational_summary",
+                    "No executive summary generated."
+                )
+            )
+        )
 
         st.markdown("""
         </div>

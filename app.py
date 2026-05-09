@@ -330,45 +330,76 @@ with tab1:
 
     if generate_clicked:
 
+        st.write("✅ Generate button clicked")
+    
         if not user_input.strip():
+    
             st.warning("Please enter a factory operational update before continuing.")
-
+    
         else:
-
-            template = mode_config["prompt"]
-
-            prompt = build_prompt(template, user_input)
-
-            with st.spinner("Analyzing factory operations and generating executive insights..."):
-
-                try:
-
-                    system_prompt = mode_config["system_prompt"]
-
-                    output = generate_response_llm(
-                        prompt,
-                        system_prompt
-                    )
-
+    
+            try:
+    
+                st.write("✅ Building prompt")
+    
+                template = mode_config["prompt"]
+    
+                prompt = build_prompt(template, user_input)
+    
+                st.write("✅ Prompt built successfully")
+    
+                with st.spinner("Analyzing factory operations and generating executive insights..."):
+    
                     try:
-
-                        parsed_output = json.loads(output)
-
-                        st.session_state.output_text_main = output
-                        st.session_state.output_data_main = parsed_output
-
-                        st.rerun()
-
-                    except json.JSONDecodeError:
-
-                        st.error("Failed to parse AI operational analysis response.")
-
-                        st.session_state.output_text_main = output
-                        st.session_state.output_data_main = None
-
-                except Exception as e:
-
-                    st.error(f"Operational analysis error: {str(e)}")
+    
+                        system_prompt = mode_config["system_prompt"]
+    
+                        st.write("✅ Calling OpenAI API")
+    
+                        output = generate_response_llm(
+                            prompt,
+                            system_prompt
+                        )
+    
+                        st.write("✅ Raw AI Response Received")
+                        st.code(output)
+    
+                        try:
+    
+                            parsed_output = json.loads(output)
+    
+                            st.write("✅ JSON parsed successfully")
+    
+                            st.write("Parsed JSON:")
+                            st.json(parsed_output)
+    
+                            st.session_state.output_text_main = output
+                            st.session_state.output_data_main = parsed_output
+    
+                            st.write("✅ Session state updated")
+    
+                            st.rerun()
+    
+                        except json.JSONDecodeError as e:
+    
+                            st.error("❌ Failed to parse AI response as JSON")
+    
+                            st.write(str(e))
+    
+                            st.code(output)
+    
+                            st.session_state.output_text_main = output
+                            st.session_state.output_data_main = None
+    
+                    except Exception as e:
+    
+                        st.error("❌ OpenAI API Error")
+                        st.write(str(e))
+    
+            except Exception as e:
+    
+                st.error("❌ General Processing Error")
+                st.write(str(e))
 # =====================================================
 # TAB 2 → FINDINGS
 # =====================================================

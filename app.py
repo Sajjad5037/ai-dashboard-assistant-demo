@@ -309,11 +309,13 @@ with tab1:
                     )
     
                     parsed_output = json.loads(output)
-    
+
                     st.session_state.output_text_main = output
                     st.session_state.output_data_main = parsed_output
-    
-                    st.rerun()
+                    
+                    st.success("AI operational intelligence generated successfully.")
+                    
+                    st.write(parsed_output)
     
             except json.JSONDecodeError:
     

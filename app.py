@@ -124,53 +124,6 @@ if "output_data_main" not in st.session_state:
 # -------------------------------
 # Output Section
 # -------------------------------
-if st.session_state.output_data_main:
-
-    data = st.session_state.output_data_main
-
-else:
-
-    data = {
-       "executive_summary":
-            """
-            Production efficiency declined this week due to recurring machine calibration issues and increased embroidery defects during peak production hours.
-        
-            Multiple export orders face dispatch delays, while quality control teams reported rising rework requirements on premium garments.
-            """,
-
-        "risk_level": "Medium",
-
-        "key_findings": [
-            "Machine downtime increased during evening production shifts",
-            "Embroidery defect rates rose on premium export garments",
-            "Dispatch delays affected 7 urgent client orders",
-            "Fabric wastage increased due to stitching inconsistencies",
-            "Production throughput dropped during peak workload periods"
-        ],
-        "identified_problems": [
-            "Recurring machine calibration failures impacting production speed",
-            "Increased rework requirements due to embroidery quality issues",
-            "Thread inventory shortages delaying order completion",
-            "Dispatch scheduling pressure affecting export timelines"
-        ],
-
-        "recommendations": [
-            "Schedule preventive maintenance for high-usage embroidery machines",
-            "Increase QC inspections during overtime production shifts",
-            "Reallocate urgent export orders to available production lines",
-            "Audit thread inventory forecasting process",
-            "Monitor machine downtime trends across all production units"
-        ],
-
-        
-
-        "business_outlook":
-            """
-            Operational pressure is increasing across production and dispatch workflows. 
-            Immediate maintenance intervention and production optimization are recommended 
-            to reduce export delays, minimize rework costs, and stabilize factory throughput.
-            """
-    }
 st.divider()
 
 st.subheader("Executive Business Report")
@@ -371,9 +324,7 @@ with tab1:
                             st.session_state.output_text_main = output
                             st.session_state.output_data_main = parsed_output
                             
-                            st.success("Operational intelligence generated successfully.")
-                            
-                            st.json(st.session_state.output_data_main)
+                            st.rerun()
     
                         except json.JSONDecodeError as e:
     
@@ -395,6 +346,54 @@ with tab1:
     
                 st.error("❌ General Processing Error")
                 st.write(str(e))
+if st.session_state.output_data_main:
+
+    data = st.session_state.output_data_main
+
+else:
+
+    data = {
+       "executive_summary":
+            """
+            Production efficiency declined this week due to recurring machine calibration issues and increased embroidery defects during peak production hours.
+        
+            Multiple export orders face dispatch delays, while quality control teams reported rising rework requirements on premium garments.
+            """,
+
+        "risk_level": "Medium",
+
+        "key_findings": [
+            "Machine downtime increased during evening production shifts",
+            "Embroidery defect rates rose on premium export garments",
+            "Dispatch delays affected 7 urgent client orders",
+            "Fabric wastage increased due to stitching inconsistencies",
+            "Production throughput dropped during peak workload periods"
+        ],
+        "identified_problems": [
+            "Recurring machine calibration failures impacting production speed",
+            "Increased rework requirements due to embroidery quality issues",
+            "Thread inventory shortages delaying order completion",
+            "Dispatch scheduling pressure affecting export timelines"
+        ],
+
+        "recommendations": [
+            "Schedule preventive maintenance for high-usage embroidery machines",
+            "Increase QC inspections during overtime production shifts",
+            "Reallocate urgent export orders to available production lines",
+            "Audit thread inventory forecasting process",
+            "Monitor machine downtime trends across all production units"
+        ],
+
+        
+
+        "business_outlook":
+            """
+            Operational pressure is increasing across production and dispatch workflows. 
+            Immediate maintenance intervention and production optimization are recommended 
+            to reduce export delays, minimize rework costs, and stabilize factory throughput.
+            """
+    }
+
 # =====================================================
 # TAB 2 → FINDINGS
 # =====================================================

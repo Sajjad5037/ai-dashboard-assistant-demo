@@ -315,7 +315,8 @@ with tab1:
                         )
     
                         st.write("✅ Raw AI Response Received")
-                        st.code(output)
+                        st.write(output)
+                        st.write(type(output))
     
                         try:
     
